@@ -55,6 +55,36 @@ class Image {
     {
         return $this->type;
     }
+
+    public function ensureMaxAxis()
+    {
+        if ($this->isLandscape()) {
+            if ($this->getWidth() <= 600) {
+                return;
+            }
+            $ratio = (600 / $this->getWidth());
+            $newwidth = 600;
+            $newheight = min($this->getHeight() * $ratio, 300);
+            $dst = imagecreatetruecolor($newwidth, $newheight);
+            imagecopyresampled($dst, $this->getResource(), 0, 0, 0, 0, $newwidth, $newheight, $this->getWidth(), $this->getHeight());
+            $this->resource = $dst;
+            $this->width = 600;
+            $this->height = $newheight;
+        } else {
+            if ($this->getHeight() <= 600) {
+                return;
+            }
+            $ratio = (600 / $this->getHeight());
+            $newheight = 600;
+            $newwidth = min($this->getWidth() * $ratio, 300);
+            $dst = imagecreatetruecolor($newwidth, $newheight);
+            imagecopyresampled($dst, $this->getResource(), 0, 0, 0, 0, $newwidth, $newheight, $this->getWidth(), $this->getHeight());
+            $this->resource = $dst;
+            $this->width = $newwidth;
+            $this->height = 600;
+        }
+
+    }
 }
 
 function addLabel(Image $image, Image $label)
@@ -65,18 +95,21 @@ function addLabel(Image $image, Image $label)
     imagecopymerge($image->getResource(), $label->getResource(), $xOffset, $yOffset, 0, 0, $label->getWidth(), $label->getHeight(), 100);
 }
 
-if (isset($_FILES['image1']) && isset($_FILES['image2'])) {
+if (isset($_FILES['image1']) && ! empty($_FILES['image1']['tmp_name']) && isset($_FILES['image2']) && ! empty($_FILES['image2']['tmp_name'])) {
     $image1 = new Image($_FILES['image1']['tmp_name']);
     $image2 = new Image($_FILES['image2']['tmp_name']);
-    $w1 = $image1->getWidth();
-    $w2 = $image2->getWidth();
-    $h1 = $image1->getHeight();
-    $h2 = $image2->getHeight();
 
     if ($image1->getType() != $image2->getType()) {
         throw new InvalidArgumentException("Image types mismatch.");
     }
 
+    $image1->ensureMaxAxis();
+    $image2->ensureMaxAxis();
+
+    $w1 = $image1->getWidth();
+    $w2 = $image2->getWidth();
+    $h1 = $image1->getHeight();
+    $h2 = $image2->getHeight();
     $tiene = new Image('tiene.png');
     $quiere = new Image('quiere.png');
 
@@ -97,7 +130,7 @@ if (isset($_FILES['image1']) && isset($_FILES['image2'])) {
     /**
      * Save wherever you want the output image
      */
-    $out = 'out/out' . $image2->getType() . '.jpg';
+    $out = 'out/out' . time() . '.jpg';
     imagejpeg($newImage, $out);
     ?>
     <img src="<?php echo $out ?>" />
@@ -105,8 +138,8 @@ if (isset($_FILES['image1']) && isset($_FILES['image2'])) {
 } else {
     ?>
     <form method="post"  enctype="multipart/form-data">
-        <input type="file" name="image1" id="image1" />
-        <input type="file" name="image2" id="image2" />
+        <input type="file" name="image1" id="image1" accept="image/*"  />
+        <input type="file" name="image2" id="image2" accept="image/*"  />
         <input type="submit"/>
     </form>
     <?php
