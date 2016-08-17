@@ -168,8 +168,7 @@ unlink($out);
 </header>
 <section class="container">
     <h1>OtroLoHace. OtroLoComparte</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque nec sapien sed facilisis. Curabitur dictum</p>
-    <p>Curabitur dictum.</p>
+    <p>Acá tenés tu meme, ¡compartilo!</p>
     <div class="resultado">
         <figure>
             <img src="<?php echo $url ?>"  class="img-responsive" />
@@ -188,11 +187,11 @@ unlink($out);
                 <li>
                     <a href="https://plus.google.com/share?url=<?php echo urlencode($url) ?>" target="_blank" title="Compartir en Google +"><img src="img/iconos/g.png" alt="Google +"></a>
                 </li>
-                <li>
+                <!--<li>
                     <a href="xxxxxx" target="_blank" title="Compartir en Instagram"><img src="img/iconos/inst.png" alt="Instragram"></a>
-                </li>
+                </li>-->
                 <li>
-                    <a href="whatsapp://send?text=OLX MEME" data-action="share/whatsapp/share" target="_blank" title="Compartir en Whatsapp"><img src="img/iconos/wapp.png" alt="Whatsapp"></a>
+                    <a href="whatsapp://send?text=<?php echo urlencode($url) ?" data-action="share/whatsapp/share" target="_blank" title="Compartir en Whatsapp"><img src="img/iconos/wapp.png" alt="Whatsapp"></a>
                 </li>
             </ul>
         </div>
