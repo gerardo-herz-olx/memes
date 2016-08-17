@@ -191,7 +191,7 @@ unlink($out);
                     <a href="xxxxxx" target="_blank" title="Compartir en Instagram"><img src="img/iconos/inst.png" alt="Instragram"></a>
                 </li>-->
                 <li>
-                    <a href="whatsapp://send?text=<?php echo urlencode($url) ?" data-action="share/whatsapp/share" target="_blank" title="Compartir en Whatsapp"><img src="img/iconos/wapp.png" alt="Whatsapp"></a>
+                    <a href="whatsapp://send?text=<?php echo urlencode($url) ?>" data-action="share/whatsapp/share" target="_blank" title="Compartir en Whatsapp"><img src="img/iconos/wapp.png" alt="Whatsapp"></a>
                 </li>
             </ul>
         </div>
