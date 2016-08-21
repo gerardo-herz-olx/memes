@@ -94,13 +94,39 @@
 
 
 	<script type="text/javascript">
+			var imgSizeError = "La imagen es muy pequena";
 			$(function(){
+				var _URL = window.URL || window.webkitURL;
 				$('#image1').on("change", function(){
+					var file, img;
+					if ((file = this.files[0])) {
+						img = new Image();
+						img.onload = function () {
+							if (this.width < 300 || this.height < 300) {
+								$('#image1').value = "";
+								$("#image1text").addClass("img-error");
+								$("#image1text").text(imgSizeError);
+							}
+						};
+						img.src = _URL.createObjectURL(file);
+					}
 					var text= this.value;
 					$("#image1text").text(text);
 				});
 				
 				$('#image2').on("change", function(){
+					var file, img;
+					if ((file = this.files[0])) {
+						img = new Image();
+						img.onload = function () {
+							if (this.width < 300 || this.height < 300) {
+								$('#image2').value = "";
+								$("#image2text").addClass("img-error");
+								$("#image2text").text(imgSizeError);
+							}
+						};
+						img.src = _URL.createObjectURL(file);
+					}
 					var text= this.value;
 					$("#image2text").text(text);
 				});
