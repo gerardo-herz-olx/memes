@@ -2,9 +2,7 @@
 require_once  "Image.php";
 require_once "functions.php";
 
-if (isset($_GET['log'])) {
-    die(nl2br(file_get_contents('out/memes.log')));
-} elseif (
+if (
     ! isset($_FILES['image1'])
     || empty($_FILES['image1']['tmp_name'])
     || ! isset($_FILES['image2'])
@@ -76,20 +74,17 @@ if ($image1->getType() == $image2->getType()) {
             imagecopyresampled($newImage, $image2->getResource(), 0, $h1, 0, 0, $w2, $h2, $w2, $h2);
         }
     } else {
-        $image1->ensureSize();
-        $image2->ensureSize();
-
         if ($image1->getHeight() < $image2->getHeight()) {
-            $image2->cropHeight($image1->getHeight());
+            $image2->resizeHeight($image1->getHeight());
         } else {
-            $image1->cropHeight($image2->getHeight());
+            $image1->resizeHeight($image2->getHeight());
         }
+        
         if ($image1->getWidth() < $image2->getWidth()) {
             $image2->cropWidth($image1->getWidth());
         } else {
             $image1->cropWidth($image2->getWidth());
         }
-
 
         $image1->ensureMaxAxis();
         $image2->ensureMaxAxis();

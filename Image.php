@@ -52,11 +52,6 @@ class Image {
         return $this->width > $this->height;
     }
 
-    public function isSquare()
-    {
-        return $this->width == $this->height;
-    }
-
     public function getType()
     {
         return $this->type;
@@ -65,25 +60,17 @@ class Image {
     public function ensureMaxAxis()
     {
         if ($this->isLandscape()) {
-            if ($this->getWidth() < 600) {
-                $this->resizeWidth(600);
+            if ($this->getWidth() <= 600) {
+                return;
             }
             $ratio = (600 / $this->getWidth());
             $newwidth = 600;
             $newheight = min($this->getHeight() * $ratio, 300);
-            if ($newheight < 300) {
-                return $this->cropWidth($this->getWidth() - ($this->getWidth() * (1 - $ratio)));
-            }
             $dst = imagecreatetruecolor($newwidth, $newheight);
             imagecopyresampled($dst, $this->getResource(), 0, 0, 0, 0, $newwidth, $newheight, $this->getWidth(), $this->getHeight());
             $this->resource = $dst;
             $this->width = 600;
             $this->height = $newheight;
-        } elseif ($this->isSquare()) {
-            if ($this->height < 600) {
-                $this->resizeHeight(600);
-            }
-            $this->cropWidth(300);
         } else {
             if ($this->getHeight() <= 600) {
                 return;
@@ -102,11 +89,9 @@ class Image {
 
     public function resizeHeight($height)
     {
-        /*
         if ($this->getHeight() <= $height) {
             return;
         }
-        */
         $ratio = ($height / $this->getHeight());
         $newheight = $height;
         $newwidth = $this->getWidth() * $ratio;
@@ -119,11 +104,9 @@ class Image {
 
     public function resizeWidth($width)
     {
-        /*
         if ($this->getWidth() <= $width) {
             return;
         }
-        */
         $ratio = ($width / $this->getWidth());
         $newheight = $this->getHeight() * $ratio;
         $newwidth = $width;
@@ -194,18 +177,5 @@ class Image {
 
         $this->resource = $thumb;
         $this->height = $newHeight;
-    }
-
-    public function ensureSize()
-    {
-        if ($this->height > $this->width) {
-            $this->resizeHeight(600);
-        } else {
-            $this->resizeWidth(600);
-        }
-    }
-
-    protected function stretchHeight($newHeight)
-    {
     }
 }
