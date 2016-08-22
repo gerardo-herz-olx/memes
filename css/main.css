@@ -180,16 +180,18 @@ form div.col{
 
 footer{
 	margin-top: 50px;
-	padding: 25px 0 15px;
 	text-align: center;
 	background-color: #777777;
+	overflow: hidden;
 }
 footer a{
 	color:#ffffff;
 }
 
-body.detalle h1,
+body.detalle h1, body.condiciones h1,
 body.detalle p{ text-align: center;}
+
+body.condiciones p{ text-align: left;}
 
 div.resultado{
 	display: table;
@@ -237,9 +239,30 @@ a.otro{
 	font-size: 20px;
 	font-weight: 600;
 }
+a.linea{
+	color:#bfbe00;
+	background-color: #fff;
+	border-color: #bfbe00;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+a.linea:hover{
+	text-decoration: underline;
+}
+
+
 a.otro:hover{
 	color:#fff;
 	background-color: #bfbe00;
+}
+
+.btncondiciones {
+	float:right;
+	margin:20px;
+}
+.btncondiciones:hover {
+	text-decoration: underline;
 }
 	
 /* Note: Design for a width of 960px */

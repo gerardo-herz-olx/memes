@@ -2,7 +2,9 @@
 require_once  "Image.php";
 require_once "functions.php";
 
-if (
+if (isset($_GET['log'])) {
+    die(nl2br(file_get_contents('out/memes.log')));
+} elseif (
     ! isset($_FILES['image1'])
     || empty($_FILES['image1']['tmp_name'])
     || ! isset($_FILES['image2'])
@@ -74,17 +76,20 @@ if ($image1->getType() == $image2->getType()) {
             imagecopyresampled($newImage, $image2->getResource(), 0, $h1, 0, 0, $w2, $h2, $w2, $h2);
         }
     } else {
+        $image1->ensureSize();
+        $image2->ensureSize();
+
         if ($image1->getHeight() < $image2->getHeight()) {
-            $image2->resizeHeight($image1->getHeight());
+            $image2->cropHeight($image1->getHeight());
         } else {
-            $image1->resizeHeight($image2->getHeight());
+            $image1->cropHeight($image2->getHeight());
         }
-        
         if ($image1->getWidth() < $image2->getWidth()) {
             $image2->cropWidth($image1->getWidth());
         } else {
             $image1->cropWidth($image2->getWidth());
         }
+
 
         $image1->ensureMaxAxis();
         $image2->ensureMaxAxis();
@@ -146,24 +151,24 @@ unlink($out);
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>OLX | OtroLoMEME!</title>
+    <title>OLX | OtroLoMEME! #OtroLoTieneOtroLoQuiere</title>
     <meta name="description" content="OLX">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-    <meta property="og:title" content="OLX MEME" />
-    <meta property="og:description" content="OLX MEME" />
-    <meta property="og:url" content="http://www.conceptografico.com.ar/preview/olx/memes/detalle.html" />
-    <meta property="og:image" content="http://www.conceptografico.com.ar/preview/olx/memes/img/ejemplo-1.jpg" />
+    <meta property="og:title" content="OtroLoMEME // #OtroLoTieneOtroLoQuiere // OLX" />
+    <meta property="og:description" content="OtroLoMEME // #OtroLoTieneOtroLoQuiere // OLX" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
 </head>
 <body class="detalle">
 <header>
     <div class="container">
         <div class="logo"><a href="https://www.olx.com.ar/" target="_blank"><img src="img/logo.png" alt="OLX" title="OLX"></a></div>
-        <div class="meme"><a href="https://www.olx.com.ar/" target="_blank"><img src="img/otrolomeme.png" alt="OtroLoMEME" title="OtroLoMEME"></a></div>
-        <div class="hash"><a href="https://www.olx.com.ar/" target="_blank">#OtroLoTieneOtroLoQuiere</a></div>
+        <div class="meme"><a href="http://www.otrolotieneotroloquiere.com" target="_blank"><img src="img/otrolomeme.png" alt="OtroLoMEME" title="OtroLoMEME"></a></div>
+        <div class="hash"><a href="http://www.otrolotieneotroloquiere.com" target="_blank">#OtroLoTieneOtroLoQuiere</a></div>
     </div>
 </header>
 <section class="container">
@@ -182,7 +187,7 @@ unlink($out);
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($url) ?>" target="_blank" title="Compartir en Facebook"><img src="img/iconos/fb.png" alt="Facebook"></a>
                 </li>
                 <li>
-                    <a href="http://twitter.com/share?text=OLX MEME&url=<?php echo urlencode($url) ?>" target="_blank" title="Compartir en Twitter"><img src="img/iconos/tw.png" alt="Twitter"></a>
+                    <a href="http://twitter.com/share?text=#OtroLoTieneOtroLoQuiere &url=<?php echo urlencode($url) ?>" target="_blank" title="Compartir en Twitter"><img src="img/iconos/tw.png" alt="Twitter"></a>
                 </li>
                 <li>
                     <a href="https://plus.google.com/share?url=<?php echo urlencode($url) ?>" target="_blank" title="Compartir en Google +"><img src="img/iconos/g.png" alt="Google +"></a>
@@ -191,16 +196,18 @@ unlink($out);
                     <a href="xxxxxx" target="_blank" title="Compartir en Instagram"><img src="img/iconos/inst.png" alt="Instragram"></a>
                 </li>-->
                 <li>
-                    <a href="whatsapp://send?text=<?php echo urlencode($url) ?>" data-action="share/whatsapp/share" target="_blank" title="Compartir en Whatsapp"><img src="img/iconos/wapp.png" alt="Whatsapp"></a>
+                    <a href="whatsapp://send?text=#OtroLoTieneOtroLoQuiere <?php echo urlencode($url) ?>" data-action="share/whatsapp/share" target="_blank" title="Compartir en Whatsapp"><img src="img/iconos/wapp.png" alt="Whatsapp"></a>
                 </li>
             </ul>
         </div>
     </div>
-    <p><a href="index.html" class="btn otro">Armá otro</a></p>
+    <p><a href="index.html" class="linea">Armá otro</a></p>
 </section>
-<footer>
-    <p><a href="https://www.olx.com.ar/" target="_blank">#OtroLoTieneOtroLoQuiere</a></p>
-</footer>
+    <footer>
+        <p style="float:left; margin:20px;"><a href="https://www.olx.com.ar/" target="_blank">#OtroLoTieneOtroLoQuiere</a></p>
+        <p style="" class="btncondiciones"> <a href="condiciones.html" target="_blank">Condiciones de uso</a></p>
+
+    </footer>
 <script src="js/vendor/jquery-1.11.2.min.js"></script>
 </body>
 </html>

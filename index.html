@@ -26,34 +26,34 @@
     	<h1>Últimos memes</h1>
 		<div class="ejemplos">
 			<div class="ejemplos-first">
-				<a href="detalle.html"><img src="img/ejemplo-1.jpg" class="img-responsive" alt="OLX Meme"></a>
+				<a href="img/meme-01.jpg" target="_blanck"><img src="img/meme-01.jpg" class="img-responsive" alt="OLX Meme"></a>
 			</div>
 			<div class="ejemplos-rest">
 				<div>
-					<a href="detalle.html"><img src="img/ejemplo-1.jpg" class="img-responsive" alt="OLX Meme"></a>
+					<a href="img/meme-03.jpg" target="_blanck"><img src="img/meme-03.jpg" class="img-responsive" alt="OLX Meme"></a>
 				</div>
 				<div>
-					<a href="detalle.html"><img src="img/ejemplo-1.jpg" class="img-responsive" alt="OLX Meme"></a>
+					<a href="img/meme-08.jpg" target="_blanck"><img src="img/meme-08.jpg" class="img-responsive" alt="OLX Meme"></a>
 				</div>
 				<div>
-					<a href="detalle.html"><img src="img/ejemplo-1.jpg" class="img-responsive" alt="OLX Meme"></a>
+					<a href="img/meme-04.jpg" target="_blanck"><img src="img/meme-04.jpg" class="img-responsive" alt="OLX Meme"></a>
 				</div>
 				<div>
-					<a href="detalle.html"><img src="img/ejemplo-1.jpg" class="img-responsive" alt="OLX Meme"></a>
+					<a href="img/meme-05.jpg" target="_blanck"><img src="img/meme-05.jpg" class="img-responsive" alt="OLX Meme"></a>
 				</div>
 				<div class="hidden">
-					<a href="detalle.html"><img src="img/ejemplo-1.jpg" class="img-responsive" alt="OLX Meme"></a>
+					<a href="img/meme-06.jpg" target="_blanck"><img src="img/meme-06.jpg" class="img-responsive" alt="OLX Meme"></a>
 				</div>
 				<div class="hidden">
-					<a href="detalle.html"><img src="img/ejemplo-1.jpg" class="img-responsive" alt="OLX Meme"></a>
+					<a href="img/meme-07.jpg" target="_blanck"><img src="img/meme-07.jpg" class="img-responsive" alt="OLX Meme"></a>
 				</div>
 			</div>
 		</div>
   	</section>
   	<section class="container section-form">
   		<h1>Armá el tuyo</h1>
-   		<p>Elegí una imagen de alguien que lo tenga y otra imagen de alguien que lo quiera. Dale a "Generar".</p>
-   		<p>Compartilo con tus amigos</p>
+   		<p>Elegí una imagen de alguien que lo tenga y otra imagen de alguien que lo quiera. Dale a "Generar". Compartilo con tus amigos. <br/><br/></p>
+   		
    		
    		<form action="upload.php" method="post" enctype="multipart/form-data">
 				<div class="form-group">
@@ -84,8 +84,10 @@
 				</div>
 			</form>
   	</section>
-  	<footer>
-  		<p><a href="https://www.olx.com.ar/" target="_blank">#OtroLoTieneOtroLoQuiere</a></p>
+  		<footer>
+  		<p style="float:left; margin:20px;"><a href="https://www.olx.com.ar/" target="_blank">#OtroLoTieneOtroLoQuiere</a></p>
+  		<p style="" class="btncondiciones">	<a href="condiciones.html" target="_blank">Condiciones de uso</a></p>
+
   	</footer>
    	
     
@@ -94,13 +96,39 @@
 
 
 	<script type="text/javascript">
+			var imgSizeError = "La imagen es muy pequena";
 			$(function(){
+				var _URL = window.URL || window.webkitURL;
 				$('#image1').on("change", function(){
+					var file, img;
+					if ((file = this.files[0])) {
+						img = new Image();
+						img.onload = function () {
+							if (this.width < 300 || this.height < 300) {
+								$('#image1').value = "";
+								$("#image1text").addClass("img-error");
+								$("#image1text").text(imgSizeError);
+							}
+						};
+						img.src = _URL.createObjectURL(file);
+					}
 					var text= this.value;
 					$("#image1text").text(text);
 				});
 				
 				$('#image2').on("change", function(){
+					var file, img;
+					if ((file = this.files[0])) {
+						img = new Image();
+						img.onload = function () {
+							if (this.width < 300 || this.height < 300) {
+								$('#image2').value = "";
+								$("#image2text").addClass("img-error");
+								$("#image2text").text(imgSizeError);
+							}
+						};
+						img.src = _URL.createObjectURL(file);
+					}
 					var text= this.value;
 					$("#image2text").text(text);
 				});
