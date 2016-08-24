@@ -189,14 +189,11 @@ unlink($out);
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($url) ?>" target="_blank" title="Compartir en Facebook"><img src="img/iconos/fb.png" alt="Facebook"></a>
                 </li>
                 <li>
-                    <a href="http://twitter.com/share?text=Armé mi meme #OtroLoTieneOtroLoQuiere.&url=<?php echo urlencode($url) ?>" target="_blank" title="Compartir en Twitter"><img src="img/iconos/tw.png" alt="Twitter"></a>
+                    <a href="http://twitter.com/share?text=Armé mi meme %23OtroLoTieneOtroLoQuiere.&url=<?php echo urlencode($url) ?>" target="_blank" title="Compartir en Twitter"><img src="img/iconos/tw.png" alt="Twitter"></a>
                 </li>
                 <li>
                     <a href="https://plus.google.com/share?url=<?php echo urlencode($url) ?>" target="_blank" title="Compartir en Google +"><img src="img/iconos/g.png" alt="Google +"></a>
                 </li>
-                <!--<li>
-                    <a href="xxxxxx" target="_blank" title="Compartir en Instagram"><img src="img/iconos/inst.png" alt="Instragram"></a>
-                </li>-->
                 <li>
                     <a href="whatsapp://send?text=Arm&eacute; mi meme #OtroLoTieneOtroLoQuiere. Cre&aacute; uno: http://www.otrolotieneotroloquiere.com/  <?php echo urlencode($url) ?>" data-action="share/whatsapp/share" target="_blank" title="Compartir en Whatsapp"><img src="img/iconos/wapp.png" alt="Whatsapp"></a>
                 </li>
