@@ -202,11 +202,19 @@ unlink($out);
     </div>
     <p><a href="index.html" class="linea">Armá otro</a></p>
 </section>
-    <footer>
-        <p style="float:left; margin:20px;"><a href="https://www.olx.com.ar/" target="_blank">#OtroLoTieneOtroLoQuiere</a></p>
-        <p style="" class="btncondiciones"> <a href="condiciones.html" target="_blank">Condiciones de uso</a></p>
+        <footer>
+        
+            <ul class="nav">
+                <li><a href="https://www.facebook.com/olxargentina"><img src="img/facebook.png"></a></li>
+                <li><a href="https://twitter.com/olxArgentina"><img src="img/twiter.png"></a></li>
+                <li><a href="https://www.youtube.com/user/OLXar"><img src="img/youtube.png"></a></li>
+                <li><a href="https://www.instagram.com/olxArgentina/"><img src="img/instagrand.png"></a></li>
+            </ul>
+       
+        <p  class="btncondiciones"> <a href="condiciones.html" target="_blank">Condiciones de uso</a></p>
 
     </footer>
+    
 <script src="js/vendor/jquery-1.11.2.min.js"></script>
 </body>
 </html>
