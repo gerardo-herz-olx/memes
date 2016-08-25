@@ -195,7 +195,7 @@ unlink($out);
                     <a href="https://plus.google.com/share?url=<?php echo urlencode($url) ?>" target="_blank" title="Compartir en Google +"><img src="img/iconos/g.png" alt="Google +"></a>
                 </li>
                 <li>
-                    <a href="whatsapp://send?text=Arm&eacute; mi meme %23OtroLoTieneOtroLoQuiere. <?php echo urlencode($url) ?>" data-action="share/whatsapp/share" target="_blank" title="Compartir en Whatsapp"><img src="img/iconos/wapp.png" alt="Whatsapp"></a>
+                    <a href="whatsapp://send?text=Arm&eacute; mi meme %23OtroLoTieneOtroLoQuiere. <?php echo urlencode($url) ?> Cre&aacute; uno: http://olx.sm/otroloMEME" data-action="share/whatsapp/share" target="_blank" title="Compartir en Whatsapp"><img src="img/iconos/wapp.png" alt="Whatsapp"></a>
                 </li>
             </ul>
         </div>
