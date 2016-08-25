@@ -158,7 +158,7 @@ unlink($out);
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-    <meta property="og:title" content="Armé mi meme #OtroLoTieneOtroLoQuiere." />
+    <meta property="og:title" content="Armé mi meme %23OtroLoTieneOtroLoQuiere." />
     <meta property="og:description" content="Creá uno: otrolotieneotroloquiere.com" />
     <meta property="og:url" content="<?php echo urlencode($url) ?>" />
     <meta property="og:image" content="<?php echo urlencode($url) ?>" />
