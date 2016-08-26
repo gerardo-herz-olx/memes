@@ -140,4 +140,4 @@ $url = 'https://images01.olx-st.com/' . $response['url'];
 file_put_contents("out/memes.log", $url . "\n", FILE_APPEND);
 unlink($out);
 
-header('Location: /meme.php?img='.$response['url']);
+header('Location: meme.php?img='.$response['url']);
